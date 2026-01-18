@@ -6,8 +6,8 @@
     <title>The Beacon Signal - Clear thinking for people who care how things actually work</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/mailchimp-embedded-css@1.0.0/mailchimp.min.css" rel="stylesheet" type="text/css">
     <style>
         * {
             margin: 0;
@@ -38,16 +38,11 @@
             align-items: center;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
         .brand-name {
             font-weight: 700;
             font-size: 20px;
             color: #fff;
+            text-decoration: none;
         }
 
         .header-link {
@@ -63,317 +58,384 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #2c4f6f 0%, #3d6b8f 50%, #4a8ba8 100%);
-            color: #fff;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             padding: 100px 40px;
             text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20px 20px, rgba(44, 79, 111, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
         }
 
         .hero-content {
             max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 107, 53, 0.1);
+            color: #ff6b35;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 30px;
         }
 
         .hero-title {
             font-size: 64px;
             font-weight: 900;
+            color: #1e3a5f;
+            margin-bottom: 20px;
             line-height: 1.2;
-            margin-bottom: 30px;
-            letter-spacing: -1px;
-        }
-
-        .highlight-orange {
-            color: #ff6b35;
         }
 
         .hero-subtitle {
-            font-size: 26px;
-            font-weight: 600;
+            font-size: 20px;
+            color: #6c757d;
             margin-bottom: 30px;
-            opacity: 0.95;
-            line-height: 1.4;
+            font-weight: 500;
         }
 
         .hero-description {
-            font-size: 19px;
+            font-size: 16px;
+            color: #6c757d;
             line-height: 1.8;
-            opacity: 0.9;
-            margin-bottom: 20px;
         }
 
         /* Content Sections */
-        .content-section {
+        .section {
             padding: 80px 40px;
-            max-width: 900px;
-            margin: 0 auto;
         }
 
-        .content-section.gray {
-            background: #f8f9fa;
-            max-width: 100%;
-        }
-
-        .content-section.gray .content-inner {
+        .section-content {
             max-width: 900px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-size: 42px;
-            font-weight: 800;
-            color: #1e3a5f;
-            margin-bottom: 30px;
-            line-height: 1.3;
-        }
-
-        .section-text {
-            font-size: 18px;
-            line-height: 1.8;
-            color: #333;
-            margin-bottom: 25px;
-        }
-
-        .section-text strong {
-            color: #1e3a5f;
-            font-weight: 700;
-        }
-
-        .section-text em {
-            font-style: italic;
-            color: #555;
-        }
-
-        .list-section {
-            margin: 30px 0;
-        }
-
-        .list-title {
-            font-size: 22px;
+            font-size: 36px;
             font-weight: 700;
             color: #1e3a5f;
             margin-bottom: 20px;
+            text-align: center;
         }
 
-        .bullet-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .bullet-list li {
+        .section-intro {
             font-size: 18px;
+            color: #6c757d;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .text-content {
+            font-size: 16px;
+            color: #495057;
             line-height: 1.8;
-            color: #333;
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
+            margin-bottom: 20px;
         }
 
-        .bullet-list li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #ff6b35;
-            font-weight: 700;
+        .text-content strong {
+            color: #1e3a5f;
+            font-weight: 600;
         }
 
-        /* Perspectives Grid */
-        .perspectives-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
+        .text-content em {
+            color: #1e3a5f;
+            font-style: italic;
+        }
+
+        .highlight-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e3a5f;
+            text-align: center;
             margin: 40px 0;
         }
 
-        .perspective-card {
+        /* Pattern Cards */
+        .pattern-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .pattern-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
             background: #fff;
-            border-left: 4px solid #ff6b35;
-            padding: 25px;
+            border: 1px solid #e9ecef;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s;
         }
 
-        .perspective-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1e3a5f;
-            margin-bottom: 10px;
+        .pattern-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
-        .perspective-description {
-            font-size: 17px;
-            line-height: 1.7;
-            color: #555;
+        .pattern-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff6b35;
+            font-size: 18px;
+            flex-shrink: 0;
         }
 
-        /* Three Principles */
+        .pattern-text {
+            color: #495057;
+            font-size: 16px;
+        }
+
+        .tagline {
+            text-align: center;
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 30px;
+        }
+
+        /* Principles Section */
         .principles-section {
-            background: #2c4f6f;
+            background: #1e3a5f;
             color: #fff;
             padding: 80px 40px;
-            margin: 60px 0;
         }
 
         .principles-content {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .principles-title {
             font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 40px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .principles-intro {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 50px;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .principle-item {
             text-align: center;
         }
 
-        .principle {
-            margin-bottom: 35px;
-        }
-
-        .principle-name {
+        .principle-heading {
             font-size: 24px;
             font-weight: 700;
             color: #ff6b35;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .principle-text {
-            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.8;
-            opacity: 0.95;
         }
 
-        /* Subscription Section */
-        .subscription-section {
-            padding: 100px 40px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        /* Issue Cards */
+        .issue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
         }
 
-        .subscription-content {
-            max-width: 700px;
+        .issue-card {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .issue-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .issue-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+
+        .issue-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin-bottom: 10px;
+        }
+
+        .issue-description {
+            font-size: 14px;
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        /* Subscribe Section */
+        .subscribe-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 80px 40px;
+        }
+
+        .subscribe-content {
+            max-width: 600px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .subscription-intro {
-            font-size: 20px;
-            line-height: 1.8;
-            color: #333;
-            margin-bottom: 15px;
+        .subscribe-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin-bottom: 20px;
         }
 
-        .subscription-details {
-            font-size: 18px;
+        .subscribe-text {
+            font-size: 16px;
+            color: #6c757d;
+            margin-bottom: 30px;
             line-height: 1.8;
-            color: #666;
-            margin-bottom: 50px;
+        }
+
+        .subscribe-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .subscribe-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .subscribe-feature::before {
+            content: '⚡';
+            color: #ff6b35;
         }
 
         /* Mailchimp Form Styling */
         #mc_embed_signup {
-            background: #fff !important;
+            background: transparent;
             clear: left;
-            width: 100% !important;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            font: inherit;
         }
 
-        #mc_embed_signup h2 {
-            font-size: 32px;
-            font-weight: 800;
-            color: #1e3a5f;
-            margin-bottom: 30px;
-            text-align: center;
+        #mc_embed_signup form {
+            padding: 0;
+            margin: 0;
         }
 
         #mc_embed_signup .mc-field-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         #mc_embed_signup label {
+            display: block;
+            text-align: left;
             font-weight: 600;
-            font-size: 15px;
             color: #1e3a5f;
             margin-bottom: 8px;
-            display: block;
         }
 
         #mc_embed_signup input[type="email"],
         #mc_embed_signup input[type="text"] {
             width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e0e0e0;
+            padding: 15px;
+            border: 2px solid #e9ecef;
             border-radius: 8px;
             font-size: 16px;
-            font-family: 'Inter', sans-serif;
+            font-family: inherit;
             transition: border-color 0.3s;
         }
 
         #mc_embed_signup input[type="email"]:focus,
         #mc_embed_signup input[type="text"]:focus {
             outline: none;
-            border-color: #4a8ba8;
+            border-color: #ff6b35;
+        }
+
+        #mc_embed_signup input[type="checkbox"] {
+            margin-right: 8px;
         }
 
         #mc_embed_signup .button {
-            background: #ff6b35 !important;
-            color: #fff !important;
-            padding: 16px 40px !important;
-            border: none !important;
-            border-radius: 8px !important;
-            font-size: 18px !important;
-            font-weight: 700 !important;
-            cursor: pointer !important;
-            transition: all 0.3s !important;
+            background: #ff6b35;
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
             width: 100%;
-            margin-top: 20px;
         }
 
         #mc_embed_signup .button:hover {
-            background: #e55a2b !important;
+            background: #e55a2b;
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
 
-        #mc_embed_signup .indicates-required {
-            text-align: center;
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 20px;
+        #mc_embed_signup .helper_text {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 10px;
+            line-height: 1.6;
         }
 
         #mc_embed_signup .asterisk {
             color: #ff6b35;
         }
 
-        #mc_embed_signup .mc-sms-phone-group {
-            margin-top: 15px;
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-        }
-
-        #mc_embed_signup .small-meta {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.5;
-        }
-
-        #mc_embed_signup .small-meta a {
-            color: #4a8ba8;
-            text-decoration: none;
-        }
-
-        #mc_embed_signup .small-meta a:hover {
-            text-decoration: underline;
-        }
-
         /* Footer */
         .footer {
-            background: #1a1a1a;
-            color: #fff;
+            background: #1e3a5f;
+            color: rgba(255, 255, 255, 0.8);
             padding: 40px;
             text-align: center;
         }
@@ -381,6 +443,14 @@
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .footer-link {
@@ -393,26 +463,43 @@
             color: #ff6b35;
         }
 
+        .footer-text {
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 42px;
             }
 
-            .hero-subtitle {
-                font-size: 20px;
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .principles-section {
+                padding: 60px 20px;
+            }
+
+            .subscribe-section {
+                padding: 60px 20px;
             }
 
             .section-title {
+                font-size: 28px;
+            }
+
+            .principles-title {
                 font-size: 32px;
             }
 
-            .content-section {
-                padding: 60px 25px;
-            }
-
-            #mc_embed_signup {
-                padding: 30px 20px;
+            .issue-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -421,9 +508,7 @@
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <div class="brand">
-                <span class="brand-name">Beacon Line Works</span>
-            </div>
+            <a href="https://www.beaconlineworks.com" class="brand-name">Beacon Line Works</a>
             <a href="https://www.beaconlineworks.com" class="header-link">Visit Website</a>
         </div>
     </header>
@@ -431,134 +516,157 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">The Beacon <span class="highlight-orange">Signal</span></h1>
+            <div class="badge">⚡ Bi-weekly briefing</div>
+            <h1 class="hero-title">The Beacon Signal</h1>
             <p class="hero-subtitle">Clear thinking for people who care how things actually work.</p>
-            <p class="hero-description">Operational insight for ground transportation, fleet systems, and the everyday traveler who values people, process, and performance.</p>
+            <p class="hero-description">
+                Operational insight for ground transportation, fleet systems, and the everyday traveler who values people, process, and performance.
+            </p>
         </div>
     </section>
 
-    <!-- Introduction -->
-    <section class="content-section">
-        <p class="section-text">
-            The Beacon Signal is a bi-weekly briefing on how work actually moves through complex, high-volume systems—where decisions are made under pressure, where flow quietly breaks down, and where good intentions succeed or fail based on design.
-        </p>
-        <p class="section-text">
-            It's written from inside real operating environments, but it isn't only for operators.
-        </p>
-        <p class="section-text">
-            It's for <strong>leaders responsible for outcomes they can't always see.</strong><br>
-            For <strong>workers who feel friction long before it shows up on a report.</strong><br>
-            For <strong>travelers who notice when things run smoothly—and when they don't.</strong><br>
-            And for <strong>anyone who believes that performance is shaped upstream, not at the moment of failure.</strong>
-        </p>
-        <p class="section-text">
-            This isn't commentary.<br>
-            <em>It's observation.</em>
-        </p>
+    <!-- Introduction Section -->
+    <section class="section">
+        <div class="section-content">
+            <p class="text-content">
+                The Beacon Signal is a bi-weekly briefing on how work actually moves through complex, high-volume systems—where decisions are made under pressure, where flow quietly breaks down, and where good intentions succeed or fail based on design.
+            </p>
+            <p class="text-content">
+                It's written from inside real operating environments, but it isn't only for operators.
+            </p>
+            <p class="text-content">
+                It's for <strong>leaders responsible for outcomes they can't always see.</strong><br>
+                For <strong>workers who feel friction long before it shows up on a report.</strong><br>
+                For <strong>travelers who notice when things run smoothly—and when they don't.</strong><br>
+                And for <strong>anyone who believes that performance is shaped upstream, not at the moment of failure.</strong>
+            </p>
+            <p class="text-content">
+                This isn't commentary.<br>
+                <em>It's observation.</em>
+            </p>
+        </div>
     </section>
 
-    <!-- What Makes It Different -->
-    <section class="content-section gray">
-        <div class="content-inner">
+    <!-- What Makes It Different Section -->
+    <section class="section" style="background: #f8f9fa;">
+        <div class="section-content">
             <h2 class="section-title">What Makes It Different</h2>
-            <p class="section-text">
+            <p class="section-intro">
                 Most writing about operations focuses on metrics or complaints.
             </p>
-            <p class="section-text">
-                <strong>The Beacon Signal focuses on patterns.</strong>
-            </p>
-            <div class="list-section">
-                <p class="list-title">Patterns in:</p>
-                <ul class="bullet-list">
-                    <li>how people move through systems</li>
-                    <li>where decisions quietly slow things down</li>
-                    <li>how small design choices create large consequences</li>
-                    <li>why effort alone doesn't fix broken flow</li>
-                </ul>
+            <p class="highlight-text">The Beacon Signal focuses on patterns.</p>
+            
+            <div class="pattern-list">
+                <div class="pattern-item">
+                    <div class="pattern-icon">⚡</div>
+                    <div class="pattern-text">how people move through systems</div>
+                </div>
+                <div class="pattern-item">
+                    <div class="pattern-icon">⚡</div>
+                    <div class="pattern-text">where decisions quietly slow things down</div>
+                </div>
+                <div class="pattern-item">
+                    <div class="pattern-icon">⚡</div>
+                    <div class="pattern-text">how small design choices create large consequences</div>
+                </div>
+                <div class="pattern-item">
+                    <div class="pattern-icon">⚡</div>
+                    <div class="pattern-text">why effort alone doesn't fix broken flow</div>
+                </div>
             </div>
-            <p class="section-text">
+
+            <p class="text-content" style="text-align: center; margin-top: 30px;">
                 Whether you're managing a fleet, dispatching work, or just trying to get home on time, these patterns affect you.
             </p>
-            <p class="section-text">
-                <strong>Once you see them, you can't unsee them.</strong>
-            </p>
+            <p class="tagline"><strong>Once you see them, you can't unsee them.</strong></p>
         </div>
     </section>
 
-    <!-- Three Principles -->
+    <!-- Principles Section -->
     <section class="principles-section">
         <div class="principles-content">
             <h2 class="principles-title">PEOPLE. PROCESS. PERFORMANCE.</h2>
-            <p class="section-text" style="color: #fff; opacity: 0.95; margin-bottom: 40px;">
-                At its core, The Beacon Signal is guided by three principles:
-            </p>
-            <div class="principle">
-                <div class="principle-name">People</div>
-                <div class="principle-text">because systems exist to support human work, not fight against it.</div>
+            <p class="principles-intro">At its core, The Beacon Signal is guided by three principles:</p>
+            
+            <div class="principles-grid">
+                <div class="principle-item">
+                    <h3 class="principle-heading">People</h3>
+                    <p class="principle-text">
+                        because systems exist to support human work, not fight against it.
+                    </p>
+                </div>
+                <div class="principle-item">
+                    <h3 class="principle-heading">Process</h3>
+                    <p class="principle-text">
+                        because consistency and clarity matter more than urgency.
+                    </p>
+                </div>
+                <div class="principle-item">
+                    <h3 class="principle-heading">Performance</h3>
+                    <p class="principle-text">
+                        because outcomes are shaped long before results appear on a dashboard.
+                    </p>
+                </div>
             </div>
-            <div class="principle">
-                <div class="principle-name">Process</div>
-                <div class="principle-text">because consistency and clarity matter more than urgency.</div>
-            </div>
-            <div class="principle">
-                <div class="principle-name">Performance</div>
-                <div class="principle-text">because outcomes are shaped long before results appear on a dashboard.</div>
-            </div>
-            <p class="section-text" style="color: #fff; opacity: 0.95; margin-top: 40px;">
-                Each issue explores how these three elements interact—sometimes smoothly, sometimes painfully—in real environments.
+
+            <p class="principle-text" style="text-align: center; margin-top: 40px;">
+                Each issue explores how these three elements interact—sometimes smoothly, sometimes not.
             </p>
         </div>
     </section>
 
-    <!-- What You'll Find -->
-    <section class="content-section">
-        <h2 class="section-title">What You'll Find in Each Issue</h2>
-        <p class="section-text">
-            Each issue includes perspectives from different angles of the same system:
-        </p>
-        <div class="perspectives-grid">
-            <div class="perspective-card">
-                <div class="perspective-title">Traveler's Edge</div>
-                <div class="perspective-description">how operations show up for customers in subtle ways</div>
+    <!-- What You'll Find Section -->
+    <section class="section">
+        <div class="section-content" style="max-width: 1200px;">
+            <h2 class="section-title">What You'll Find in Each Issue</h2>
+            <p class="section-intro">Each issue includes perspectives from different angles of the same system:</p>
+            
+            <div class="issue-grid">
+                <div class="issue-card">
+                    <div class="issue-icon">👁️</div>
+                    <h3 class="issue-title">Traveler's Edge</h3>
+                    <p class="issue-description">how operations show up for customers in subtle ways</p>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-icon">👤</div>
+                    <h3 class="issue-title">Driver's Advantage</h3>
+                    <p class="issue-description">what frontline work actually requires under real conditions</p>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-icon">⚙️</div>
+                    <h3 class="issue-title">Shift Command</h3>
+                    <p class="issue-description">how daily decisions affect flow, morale, and results</p>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-icon">📊</div>
+                    <h3 class="issue-title">Operations Briefing</h3>
+                    <p class="issue-description">a systems-level look at where work waits or breaks</p>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-icon">💼</div>
+                    <h3 class="issue-title">Executive Dashboard</h3>
+                    <p class="issue-description">what leaders should notice before problems escalate</p>
+                </div>
             </div>
-            <div class="perspective-card">
-                <div class="perspective-title">Driver's Advantage</div>
-                <div class="perspective-description">what frontline work actually requires under real conditions</div>
-            </div>
-            <div class="perspective-card">
-                <div class="perspective-title">Shift Command</div>
-                <div class="perspective-description">how daily decisions affect flow, morale, and results</div>
-            </div>
-            <div class="perspective-card">
-                <div class="perspective-title">Operations Briefing</div>
-                <div class="perspective-description">a systems-level look at where work waits or breaks</div>
-            </div>
-            <div class="perspective-card">
-                <div class="perspective-title">Executive Dashboard</div>
-                <div class="perspective-description">what leaders should notice before problems escalate</div>
-            </div>
+
+            <p class="text-content" style="text-align: center; margin-top: 30px;">
+                You don't need to read every section.
+            </p>
+            <p class="highlight-text">But if you do, you'll start to see the whole system more clearly.</p>
         </div>
-        <p class="section-text">
-            You don't need to read every section.
-        </p>
-        <p class="section-text">
-            <strong>But if you do, you'll start to see the whole system more clearly.</strong>
-        </p>
     </section>
 
-    <!-- Tone & Promise -->
-    <section class="content-section gray">
-        <div class="content-inner">
+    <!-- Tone & Promise Section -->
+    <section class="section" style="background: #f8f9fa;">
+        <div class="section-content">
             <h2 class="section-title">Tone & Promise</h2>
-            <p class="section-text">
+            <p class="text-content" style="text-align: center;">
                 The Beacon Signal doesn't chase trends.<br>
                 It doesn't sell quick fixes.<br>
                 It doesn't argue about politics.
             </p>
-            <p class="section-text">
-                <strong>It exists to slow thinking down just enough to get it right.</strong>
-            </p>
-            <p class="section-text">
+            <p class="highlight-text">It exists to slow thinking down just enough to get it right.</p>
+            <p class="text-content" style="text-align: center; margin-top: 30px;">
                 Sometimes that's practical.<br>
                 Sometimes it's reflective.<br>
                 Often it's quietly uncomfortable—in a useful way.
@@ -566,77 +674,62 @@
         </div>
     </section>
 
-    <!-- Subscription Form Section -->
-    <section class="subscription-section">
-        <div class="subscription-content">
-            <p class="subscription-intro">
-                The Beacon Signal doesn't chase trends, sell quick fixes, or argue politics.<br>
-                <strong>It exists to slow thinking down just enough to get it right.</strong>
+    <!-- Subscribe Section -->
+    <section class="subscribe-section">
+        <div class="subscribe-content">
+            <h2 class="subscribe-title">Subscribe</h2>
+            <p class="subscribe-text">
+                If this way of seeing the world resonates, I welcome you to subscribe.
             </p>
-            <p class="subscription-details">
-                If this way of seeing the world resonates, I welcome you to subscribe.<br><br>
-                Bi-weekly.<br>
-                No promotions.<br>
-                No noise.<br>
-                <strong>Just clarity.</strong>
-            </p>
-
-            <!-- Mailchimp Embedded Form -->
-            <div id="mc_embed_shell">
-                <div id="mc_embed_signup">
-                    <form action="https://901consulting.us14.list-manage.com/subscribe/post?u=f6082206300271412949ef27d&amp;id=7e36f03a4f&amp;f_id=00ff90e1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-                        <div id="mc_embed_signup_scroll">
-                            <h2>Subscribe</h2>
-                            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-                            
-                            <div class="mc-field-group">
-                                <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
-                                <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="">
-                            </div>
-                            
-                            <div class="mc-field-group">
-                                <label for="mce-SMSPHONE">SMS Phone Number <span class="asterisk">*</span></label>
-                                <div class="" style="display: flex; border: 2px solid #e0e0e0; border-radius: 8px;">
-                                    <div style="display: flex;">
-                                        <span style="padding-left: 0px; padding-right: 4px; align-self: center;">
-                                            <div style="display: flex; align-content: flex-start; align-items: center; gap: 10px;">
-                                                <div id="flag-display-SMSPHONE" style="display: flex; align-items: center; gap: 4px; cursor: pointer; padding-left: 8px; position: relative;">
-                                                    <span id="flag-emoji-SMSPHONE">🇺🇸</span>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                                                        <path d="M8.0096 11.5649C7.9219 11.5649 7.83506 11.5476 7.75407 11.5139C7.67307 11.4803 7.59951 11.431 7.5376 11.3689L3.54293 7.36289C3.48099 7.30091 3.43186 7.22733 3.39836 7.14636C3.36485 7.06539 3.34763 6.97862 3.34766 6.89099C3.34769 6.80336 3.36498 6.7166 3.39854 6.63565C3.4321 6.55471 3.48128 6.48117 3.54326 6.41923C3.60525 6.35729 3.67882 6.30816 3.75979 6.27466C3.84076 6.24115 3.92754 6.22392 4.01517 6.22395C4.10279 6.22398 4.18956 6.24127 4.2705 6.27484C4.35145 6.3084 4.42499 6.35758 4.48693 6.41956L8.01093 9.95289L11.5443 6.42956C11.6694 6.30464 11.8391 6.23457 12.016 6.23476C12.1928 6.23495 12.3623 6.30538 12.4873 6.43056C12.6122 6.55574 12.6823 6.72542 12.6821 6.90227C12.6819 7.07911 12.6114 7.24864 12.4863 7.37356L8.48026 11.3702C8.35532 11.4949 8.18607 11.5649 8.0096 11.5649Z" fill="#21262A"></path>
-                                                    </svg>
-                                                    <select id="country-select-SMSPHONE" name="SMSPHONE[country]" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 10; border: none; background: transparent; font-size: 0px; margin: 0px; padding: 0px; min-width: auto; max-width: none;">
-                                                        <option value="US" selected="">US+1</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </span>
-                                    </div>
-                                    <input type="text" name="SMSPHONE" class="REQ_CSS" id="mce-SMSPHONE" placeholder="+1 000 000 0000" value="" style="border: none; flex: 1; padding: 14px 16px; font-size: 16px; font-family: 'Inter', sans-serif;">
-                                </div>
-                                <div class="mc-sms-phone-group">
-                                    <div><input type="checkbox" name="mc-SMSPHONE-ack" id="mc-SMSPHONE-ack" value="true"></div>
-                                    <div class="small-meta">
-                                        <span id="legal-text-SMSPHONE">Beacon Line Works - By providing your phone number and checking the box, you agree to receive promotional and marketing messages, notifications, and customer service communications from Beacon Line Works. Message and data rates may apply. Consent is not a condition of purchase. Message frequency varies. Text HELP for help. Text STOP to cancel. See <a href="https://www.beaconlineworks.com/terms" target="_blank">Terms</a> and <a href="https://www.beaconlineworks.com/privacy" target="_blank">Privacy Policy</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div id="mce-responses" class="clear">
-                                <div class="response" id="mce-error-response" style="display: none;"></div>
-                                <div class="response" id="mce-success-response" style="display: none;"></div>
-                            </div>
-                            
-                            <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                                <input type="text" name="b_f6082206300271412949ef27d_7e36f03a4f" tabindex="-1" value="">
-                            </div>
-                            
-                            <div class="clear">
-                                <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
-                            </div>
+            
+            <!-- Begin Mailchimp Signup Form -->
+            <div id="mc_embed_signup">
+                <form action="https://beaconlineworks.us12.list-manage.com/subscribe/post?u=3d0f9c3e5c8d1d8e2b0e0e0e0&amp;id=0e0e0e0e0e&amp;f_id=00e0e0e0e0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+                    <div id="mc_embed_signup_scroll">
+                        
+                        <div class="mc-field-group">
+                            <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+                            <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="">
                         </div>
-                    </form>
-                </div>
+                        
+                        <div class="mc-field-group">
+                            <label for="mce-SMSPHONE">SMS Phone Number <span class="asterisk">*</span></label>
+                            <input type="text" name="SMSPHONE" class="required" id="mce-SMSPHONE" required="" value="" placeholder="+1 000 000 0000">
+                        </div>
+                        
+                        <div class="mc-field-group input-group" style="text-align: left; margin: 20px 0;">
+                            <input type="checkbox" name="SMSPHONE_ACK" id="mc-SMSPHONE-ack" value="Y" required="">
+                            <label for="mc-SMSPHONE-ack" style="display: inline; font-weight: normal; margin-left: 5px;">
+                                <span class="helper_text">Beacon Line Works - By providing your phone number and checking the box, you agree to receive promotional and marketing messages, notifications, and customer service communications from Beacon Line Works. Message and data rates may apply. Consent is not a condition of purchase. Message frequency varies. Text HELP for help. Text STOP to cancel. See <a href="#">Terms</a> and <a href="#">Privacy Policy</a></span>
+                            </label>
+                        </div>
+                        
+                        <div hidden="">
+                            <input type="hidden" name="tags" value="7494781">
+                        </div>
+                        
+                        <div id="mce-responses" class="clear foot">
+                            <div class="response" id="mce-error-response" style="display: none;"></div>
+                            <div class="response" id="mce-success-response" style="display: none;"></div>
+                        </div>
+                        
+                        <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                            <input type="text" name="b_3d0f9c3e5c8d1d8e2b0e0e0e0_0e0e0e0e0e" tabindex="-1" value="">
+                        </div>
+                        
+                        <div class="clear foot">
+                            <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--End mc_embed_signup-->
+
+            <div class="subscribe-features">
+                <div class="subscribe-feature">Bi-weekly</div>
+                <div class="subscribe-feature">No promotions</div>
+                <div class="subscribe-feature">No noise</div>
+                <div class="subscribe-feature">Just clarity</div>
             </div>
         </div>
     </section>
@@ -644,25 +737,17 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2026 Beacon Line Works. All rights reserved.</p>
-            <p style="margin-top: 10px;">
-                <a href="https://www.beaconlineworks.com" class="footer-link">www.beaconlineworks.com</a>
-            </p>
+            <div class="footer-links">
+                <a href="https://www.beaconlineworks.com" class="footer-link">Beacon Line Works</a>
+                <a href="https://www.beaconlineworks.com/diagnostic" class="footer-link">Operational Diagnostic</a>
+                <a href="mailto:contact@beaconlineworks.com" class="footer-link">contact@beaconlineworks.com</a>
+            </div>
+            <p class="footer-text">© 2026 Beacon Line Works. All rights reserved.</p>
+            <p class="footer-text">Operational Readiness & Flow Control for Vendor-Heavy Fleet Operations</p>
         </div>
     </footer>
 
-    <!-- Mailchimp Validation Script -->
     <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-    <script type="text/javascript">
-        (function($) {
-            window.fnames = new Array(); 
-            window.ftypes = new Array();
-            fnames[0]='EMAIL';
-            ftypes[0]='email';
-            fnames[7]='SMSPHONE';
-            ftypes[7]='smsphone';
-        }(jQuery));
-        var $mcj = jQuery.noConflict(true);
-    </script>
+    <script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='SMSPHONE';ftypes[1]='phone';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
 </body>
 </html>
